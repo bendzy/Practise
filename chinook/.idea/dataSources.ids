@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - chinook@localhost" uuid="a5d0a946-f8ec-4438-9fb3-68897dcd60eb">
+    <database-info product="MySQL" version="5.5.5-10.1.10-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+      <schema id="1" name="chinook"/>
+      <table id="2" parent="1" name="album"/>
+      <table id="3" parent="1" name="artist"/>
+      <table id="4" parent="1" name="customer"/>
+      <table id="5" parent="1" name="employee"/>
+      <table id="6" parent="1" name="genre"/>
+      <table id="7" parent="1" name="invoice"/>
+      <table id="8" parent="1" name="invoiceline"/>
+      <table id="9" parent="1" name="mediatype"/>
+      <table id="10" parent="1" name="playlist"/>
+      <table id="11" parent="1" name="playlisttrack"/>
+      <table id="12" parent="1" name="track"/>
+      <column id="13" parent="2" name="AlbumId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="14" parent="2" name="Title">
+        <mandatory>1</mandatory>
+        <data-type>varchar(160)</data-type>
+      </column>
+      <column id="15" parent="2" name="ArtistId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="16" parent="2" name="IFK_AlbumArtistId">
+        <columns>ArtistId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="17" parent="2" name="PRIMARY">
+        <columns>AlbumId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="18" parent="2" name="FK_AlbumArtistId">
+        <columns>ArtistId</columns>
+        <ref-key>~.artist.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="19" parent="3" name="ArtistId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="20" parent="3" name="Name">
+        <data-type>varchar(120)</data-type>
+      </column>
+      <key id="21" parent="3" name="PRIMARY">
+        <columns>ArtistId</columns>
+        <primary>1</primary>
+      </key>
+      <column id="22" parent="4" name="CustomerId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="23" parent="4" name="FirstName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="24" parent="4" name="LastName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="25" parent="4" name="Company">
+        <data-type>varchar(80)</data-type>
+      </column>
+      <column id="26" parent="4" name="Address">
+        <data-type>varchar(70)</data-type>
+      </column>
+      <column id="27" parent="4" name="City">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="28" parent="4" name="State">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="29" parent="4" name="Country">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="30" parent="4" name="PostalCode">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="31" parent="4" name="Phone">
+        <data-type>varchar(24)</data-type>
+      </column>
+      <column id="32" parent="4" name="Fax">
+        <data-type>varchar(24)</data-type>
+      </column>
+      <column id="33" parent="4" name="Email">
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)</data-type>
+      </column>
+      <column id="34" parent="4" name="SupportRepId">
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="35" parent="4" name="IFK_CustomerSupportRepId">
+        <columns>SupportRepId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="36" parent="4" name="PRIMARY">
+        <columns>CustomerId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="37" parent="4" name="FK_CustomerSupportRepId">
+        <columns>SupportRepId</columns>
+        <ref-key>~.employee.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="38" parent="5" name="EmployeeId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="39" parent="5" name="LastName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="40" parent="5" name="FirstName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="41" parent="5" name="Title">
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="42" parent="5" name="ReportsTo">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="43" parent="5" name="BirthDate">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="44" parent="5" name="HireDate">
+        <data-type>datetime</data-type>
+      </column>
+      <column id="45" parent="5" name="Address">
+        <data-type>varchar(70)</data-type>
+      </column>
+      <column id="46" parent="5" name="City">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="47" parent="5" name="State">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="48" parent="5" name="Country">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="49" parent="5" name="PostalCode">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="50" parent="5" name="Phone">
+        <data-type>varchar(24)</data-type>
+      </column>
+      <column id="51" parent="5" name="Fax">
+        <data-type>varchar(24)</data-type>
+      </column>
+      <column id="52" parent="5" name="Email">
+        <data-type>varchar(60)</data-type>
+      </column>
+      <index id="53" parent="5" name="IFK_EmployeeReportsTo">
+        <columns>ReportsTo</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="54" parent="5" name="PRIMARY">
+        <columns>EmployeeId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="55" parent="5" name="FK_EmployeeReportsTo">
+        <columns>ReportsTo</columns>
+        <ref-key>PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="56" parent="6" name="GenreId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="57" parent="6" name="Name">
+        <data-type>varchar(120)</data-type>
+      </column>
+      <key id="58" parent="6" name="PRIMARY">
+        <columns>GenreId</columns>
+        <primary>1</primary>
+      </key>
+      <column id="59" parent="7" name="InvoiceId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="60" parent="7" name="CustomerId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="61" parent="7" name="InvoiceDate">
+        <mandatory>1</mandatory>
+        <data-type>datetime</data-type>
+      </column>
+      <column id="62" parent="7" name="BillingAddress">
+        <data-type>varchar(70)</data-type>
+      </column>
+      <column id="63" parent="7" name="BillingCity">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="64" parent="7" name="BillingState">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="65" parent="7" name="BillingCountry">
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="66" parent="7" name="BillingPostalCode">
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="67" parent="7" name="Total">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <index id="68" parent="7" name="IFK_InvoiceCustomerId">
+        <columns>CustomerId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="69" parent="7" name="PRIMARY">
+        <columns>InvoiceId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="70" parent="7" name="FK_InvoiceCustomerId">
+        <columns>CustomerId</columns>
+        <ref-key>~.customer.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="71" parent="8" name="InvoiceLineId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="72" parent="8" name="InvoiceId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="73" parent="8" name="TrackId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="74" parent="8" name="UnitPrice">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <column id="75" parent="8" name="Quantity">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="76" parent="8" name="IFK_InvoiceLineInvoiceId">
+        <columns>InvoiceId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="77" parent="8" name="IFK_InvoiceLineTrackId">
+        <columns>TrackId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="78" parent="8" name="PRIMARY">
+        <columns>InvoiceLineId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="79" parent="8" name="FK_InvoiceLineInvoiceId">
+        <columns>InvoiceId</columns>
+        <ref-key>~.invoice.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="80" parent="8" name="FK_InvoiceLineTrackId">
+        <columns>TrackId</columns>
+        <ref-key>~.track.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="81" parent="9" name="MediaTypeId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="82" parent="9" name="Name">
+        <data-type>varchar(120)</data-type>
+      </column>
+      <key id="83" parent="9" name="PRIMARY">
+        <columns>MediaTypeId</columns>
+        <primary>1</primary>
+      </key>
+      <column id="84" parent="10" name="PlaylistId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="85" parent="10" name="Name">
+        <data-type>varchar(120)</data-type>
+      </column>
+      <key id="86" parent="10" name="PRIMARY">
+        <columns>PlaylistId</columns>
+        <primary>1</primary>
+      </key>
+      <column id="87" parent="11" name="PlaylistId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="88" parent="11" name="TrackId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <index id="89" parent="11" name="IFK_PlaylistTrackTrackId">
+        <columns>TrackId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="90" parent="11" name="PRIMARY">
+        <columns>PlaylistId
+TrackId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="91" parent="11" name="FK_PlaylistTrackPlaylistId">
+        <columns>PlaylistId</columns>
+        <ref-key>~.playlist.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="92" parent="11" name="FK_PlaylistTrackTrackId">
+        <columns>TrackId</columns>
+        <ref-key>~.track.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="93" parent="12" name="TrackId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="94" parent="12" name="Name">
+        <mandatory>1</mandatory>
+        <data-type>varchar(200)</data-type>
+      </column>
+      <column id="95" parent="12" name="AlbumId">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="96" parent="12" name="MediaTypeId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="97" parent="12" name="GenreId">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="98" parent="12" name="Composer">
+        <data-type>varchar(220)</data-type>
+      </column>
+      <column id="99" parent="12" name="Milliseconds">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="100" parent="12" name="Bytes">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="101" parent="12" name="UnitPrice">
+        <mandatory>1</mandatory>
+        <data-type>decimal(10,2)</data-type>
+      </column>
+      <index id="102" parent="12" name="IFK_TrackAlbumId">
+        <columns>AlbumId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="103" parent="12" name="IFK_TrackGenreId">
+        <columns>GenreId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="104" parent="12" name="IFK_TrackMediaTypeId">
+        <columns>MediaTypeId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="105" parent="12" name="PRIMARY">
+        <columns>TrackId</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="106" parent="12" name="FK_TrackAlbumId">
+        <columns>AlbumId</columns>
+        <ref-key>~.album.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="107" parent="12" name="FK_TrackGenreId">
+        <columns>GenreId</columns>
+        <ref-key>~.genre.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="108" parent="12" name="FK_TrackMediaTypeId">
+        <columns>MediaTypeId</columns>
+        <ref-key>~.mediatype.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>

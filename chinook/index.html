@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Panel</title>
+    <script src="jquery-2.2.3%20(1).js" type="text/javascript"></script>
+    <script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+    <script src="jtable.2.4.0/jquery.jtable.min.js"></script>
+
+    <link href="jtable.2.4.0/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css">
+    <link rel = "stylesheet" type="text/css" href="indexStyle.css">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/base/jquery-ui.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="container">
+
+        <!--   HEADER SECTION  -->
+        <div id="header">
+            <div id="brand">
+                <h1><a href="#">Rock's Music Store</a></h1>
+            </div>
+
+            <div id="logo">
+                <img src="images/logo.png">
+            </div>
+
+            <div class="clear">
+
+            </div>
+        </div>
+
+
+        <!-- MENU -->
+        <div id="menu">
+            <ul id="menuUL">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#">Customer's</a></li>
+                <li><a href="#">Invoice's</a></li>
+                <li><a href="#">Employe's</a></li>
+                <li><a href="#">Artist's</a></li>
+            </ul>
+        </div>
+
+        <div id="error">
+            <p id="errormsg"></p>
+        </div>
+
+
+
+    <div id="panel">
+
+
+    </div>
+
+    </div>
+
+</body>
+<script>
+    $(document).ready(function(){
+
+                //hide error div
+            $("#error").hide();
+
+
+            $("#menuUL").on("click","li",function() {
+                var choice = $(this).text();
+
+                switch (choice) {
+
+                     case "Customer's":
+                        displayCustomers();
+                        $("#panel").jtable();
+
+                     case "Invoice's":
+
+                    case  "Employe's" :
+
+                    case  "Artist's" :
+                 }
+            });
+
+
+    });
+
+
+/***************   FUNCTIONS    ******************/
+
+   function displayCustomers() {
+
+    var dataString="load=Customers";
+
+    $('#panel').jtable({
+        title: 'Table of people',
+        paging: true,
+        pageSize: 10,
+        sorting: true,
+
+        defaultSorting: "FirstName ASC",
+        actions: {
+            listAction: 'customers.php',
+            createAction: '/GettingStarted/CreatePerson',
+            updateAction: '/GettingStarted/UpdatePerson',
+            deleteAction: '/GettingStarted/DeletePerson'
+        },
+        fields: {
+            CustomerId: {
+                key:true,
+                list:true
+            },
+            FirstName: {
+                title: "Name",
+                width: "25%"
+            },
+            LastName: {
+                title: 'Surname',
+                width: '25%'
+            },
+            City: {
+                title: 'City',
+                width: '25%'
+            },
+            Country: {
+                title: 'Country',
+                width: '25%'
+            }
+        }
+    });
+
+    $("#panel").jtable("load");
+
+
+
+
+/*  var table = document.createElement("table");
+
+
+ for ( var i = 0; i < data.length;i++) {
+ var tr = document.createElement("tr");
+
+ //table data
+ var td0 = document.createElement("td");
+ var td1 = document.createElement("td");
+ var td2 = document.createElement("td");
+ var td3 = document.createElement("td");
+ var td4 = document.createElement("td");
+
+ //table text data
+ var text0 = document.createTextNode(data[i].CustomerId);
+ var text1 = document.createTextNode(data[i].FirstName);
+ var text2 = document.createTextNode(data[i].LastName);
+ var text3 = document.createTextNode(data[i].City);
+ var text4 = document.createTextNode(data[i].Country);
+
+ td0.appendChild(text0);
+ td1.appendChild(text1);
+ td2.appendChild(text2);
+ td3.appendChild(text3);
+ td4.appendChild(text4);
+
+ tr.appendChild(td0);
+ tr.appendChild(td1);
+ tr.appendChild(td2);
+ tr.appendChild(td3);
+ tr.appendChild(td4);
+
+ table.appendChild(tr);
+ }
+
+
+
+ $("#panel").append(table);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+</script>
+
+</html>

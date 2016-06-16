@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chinook Login Page</title>
+    <script src="jquery-2.2.3%20(1).js"></script>
+    <link rel = "stylesheet" type="text/css" href="loginStyle.css">
+</head>
+<body>
+    <div id="container">
+
+        <!-- HEADER SECTION -->
+        <div id="header">
+            <div id="brand">
+                <h1><a href="#">Rock's Music Store</a></h1>
+            </div>
+
+            <div id="logo">
+                <img src="images/logo.png">
+            </div>
+
+            <div class="clear">
+
+            </div>
+        </div>
+
+        <!-- Admins welcome logo-->
+        <div id="admin">
+            <h2> Employe's Control Panel</h2>
+        </div>
+
+        <!-- MAIN SECTION FOR LOGIN FORM -->
+
+        <div id="introduction">
+
+            <div >
+                <h1>Please Sign In</h1>
+                <form method="post" action="#">
+                    <input type="text" id="username" name="username" placeholder="Username">
+                    <br/>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <br/>
+                    <input type="button" class="button" name="loginButton"id="loginButton" placeholder="Sign in" value="Sign In">
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Error message div -->
+
+        <div id="error">
+            <p id="errormsg"></p>
+        </div>
+
+        <!-- LEFT and RIGHT SIDEBAR  -->
+
+        <div id="leftsidebar" class="sidebar">
+                <h3> Top Customer's : </h3>
+                <ul id="customerList">
+
+                </ul>
+        </div>
+
+
+        <div id="rightsidebar" class="sidebar">
+                <h3>The best Artist's : </h3>
+                <ul id="artistList">
+
+                </ul>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="clear">
+        <footer class="footer">
+            <div>
+                <p>Company Name  Copyright &copy; 2010-2016</p>
+            </div>
+
+        </footer>
+    </div>
+
+
+</body>
+
+<script>
+    $(document).ready(function () {
+       // loadArtists();
+        loadCustomersAndArtists();
+
+
+
+       /*  Hide error message on page load */
+            $("#error").hide();
+
+
+        /*Login page Ajax Code */
+
+        $("#loginButton").click(function () {
+
+            //get username and password
+            var username = $("#username").val();
+            var password = $("#password").val();
+
+            //putting together for POST method parameters
+            var dataString = "username="+username+"&password="+password;
+
+            //checking username and password if blank
+            if ( username == "" || password == "") {
+                $("#error").show("slow");
+                $("#errormsg").text("Please enter both fields");
+
+
+            }else {
+
+                $.ajax({
+                    type: "POST",
+                    url: "login.php",
+                    data: dataString,
+
+
+                    success: function (msg) {
+                      if (msg == "OK") {
+                          window.location.replace("index.html");
+                      }else {
+                          $("#error").show("slow");
+                          $("#errormsg").text(msg);
+                      }
+                    },
+                    error: function () {
+                        alert("Browser error");
+                    }
+                });
+            }
+        });
+
+
+
+        /*************  FUNCTIONS *******************/
+
+        /*  Function to load top Customers & Artists  */
+        function loadCustomersAndArtists() {
+
+            /* Create data string to call functions in php*/
+            var dataString ="function1=loadCustomers&function2=loadArtists";
+//            var dataString2 ="function2=loadArtists";
+            // ajax request to load customers
+            $.ajax({
+                type:"GET",
+                url: "login.php",
+                data: dataString,
+                dataType: "json",
+
+                    // response
+                    success: function(daa) {
+                        //filling customers list
+                       for ( var i= 0; i<data.customers.length;i++) {
+                        for ( var j = 0; j < data.customers[i].length; j++) {
+                            $("#customerList").append("<li>"+(j+1)+". "+data.customers[i][j].FirstName+" "+data.customers[i][j].LastName+" from "
+                                    +data.customers[i][j].City+"</li>").css( {"list-style-image":"url(images/person.png)",
+                                "padding":"25px","margin-bottom":"5px","font-size":"20px"});
+                        }
+                       }
+                        //filing artists list
+                        for ( var i= 0; i<data.artists.length;i++) {
+                            for ( var j = 0; j < data.artists[i].length; j++) {
+                                $("#artistList").append("<li id='artist'>"+(j+1)+". "+data.artists[i][j].Name+"</li>").css( {"list-style-image":"url(images/guitar.png)",
+                                    "padding":"10px","font-size":"20px"});;
+                            }
+                        }
+
+                    },
+                    // error
+                    error: function() {
+                        $("#error").show("slow");
+                        $("#errormsg").text("Error can't display Customer's");
+                    }
+
+            });
+
+
+        }
+
+//        /* Function to load best selling Tracks */
+//
+//        function loadArtists() {
+//
+//            //data string for top Artists
+//            var dataString ="function2=loadArtists";
+//
+//            $.ajax({
+//                type:"GET",
+//                url: "login.php",
+//                data: dataString,
+//                dataType: "json",
+//
+//                    success: function (data) {
+//                        console.log(data);
+//                        for (var i= 0; i < data.length ; i++) {
+//                          $("#artistList").append("<li>"+data[i].Name+"</li>");
+//                        }
+//                    },
+//
+//                    error: function() {
+//                        $("#error").show("slow");
+//                        $("#errormsg").text("Error can't display Artist's");
+//                    }
+//            });
+//
+//        }
+
+    });
+</script>
+</html>
